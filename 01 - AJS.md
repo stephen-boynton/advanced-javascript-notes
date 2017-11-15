@@ -71,3 +71,24 @@ A function called in a global space will call the global object as `this`.
 
 `Arguments` are array like, but they are NOT an array. You cannot use all of the array methods on `arguments`.
 
+You should always define parameters because it makes it easier to tell what that function is supposed to be used for. There are rare cases where you may want to use the arguments object, though.
+
+```js
+const sumIt = function () {
+    let sum = 0;
+    for (let i = 0; i < arguments.length; i++) {
+
+    }
+}
+```
+
+## Creating JavaScript Objects
+
+Ways to construct: 
+* Object literal
+* Object constructor
+
+If you call this inside of an object literal construction method. The `this` keyword will refer to the object itself.
+
+The `in` keyword can test to see if a property exists in an object. `hasOwnProperty` will tell you it's on original properties.
+
