@@ -25,7 +25,7 @@ const fun1 = function () {
     console.log("From fun1 ---");
     console.log(this); // Window
     console.log(this.name); //"global" or "Window.name"
-    fun(2); //same as fun1 call
+    fun2(); //same as fun1 call
 }
 
 const fun2 = function() {
@@ -67,8 +67,94 @@ const runIt = function(fn) {
 }
 
 runIt(function fun2 () {
-        let name = "fun2";
-        console.log("From fun2 ---");
-        console.log(this); // Window
-        console.log(this.name); //"global" or "Window.name"
-    })
+    let name = "fun2";
+    console.log("From fun2 ---");
+    console.log(this); // Window
+    console.log(this.name); //"global" or "Window.name"
+});
+
+```
+
+Still the same!!!!
+
+## Normal Function Invocation Using Strict Mode
+
+If you are in strict mode, `this` will not be bound to the global object by default.
+
+Using the examples above, `this` will be undefined.
+
+## this with Method Invocation
+
+```js
+var name = "global";
+
+const obj1 = {
+    name: "obj1"
+    fun1: function () {
+        let name = "fun1";
+        console.log("From fun1 ---");
+        console.log(this); // obj
+        console.log(this.name); //"obj1"
+    }
+};
+
+obj1.fun1();
+```
+
+`this` is the Object! This is not because the method was defined inside the object. This is because the object was USED to invoke it.
+
+```js
+var name = "global";
+
+const obj1 = {
+    name: "obj1",
+    fun1: function () {
+        let name = "fun1";
+        console.log("From fun1 ---");
+        console.log(this); // obj
+        console.log(this.name); //"obj1"
+    }
+};
+
+// obj1.fun1();
+
+const obj2 = {
+    name: "obj2",
+    fun2: obj1.fun1
+}
+
+obj2.fun2(); // OBJECT 2 is now this!
+```
+
+See again how the method is being called and not where the method is defined. The method is defined in obj1 but invoked by obj2, thus obj2 is now `this`.
+
+Finally a simple explanation.
+
+```js
+const name = "global";
+
+const fun3 = function() {
+    console.log("from fun3");
+    console.log(this);
+    console.log(this.name);
+}
+
+this.fun3() // this is Window and Window.name
+
+const obj4 = {
+    name: "obj4",
+    obj5: {
+        name: "obj5",
+        fun5: function () {
+            let name = "fun5";
+            console.log("From fun5 ---");
+            console.log(this);
+            console.log(this.name);
+        }
+    }
+};
+
+obj4.obj5.fun5();
+```
+
+^^ obj5 is `this`. Pretty great.
