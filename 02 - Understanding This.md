@@ -257,3 +257,8 @@ greeting.apply(user1, ["Good Morning", "!"]); // "Good Morning John!"
 greeting.apply(user2, ["Good Afternoon", "!"]); // "Good Afternoon Sarah!"
 
 console.log(user1.fullName.call(user2)) // Sarah West
+
+```
+
+## The Bind Method
+
