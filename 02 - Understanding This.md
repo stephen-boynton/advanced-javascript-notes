@@ -158,3 +158,40 @@ obj4.obj5.fun5();
 ```
 
 ^^ obj5 is `this`. Pretty great.
+
+## Attaching a Method to a Function
+
+```js
+const fun6 = function () {
+    console.log(this);
+}
+
+fun6.name = "fun6";
+fun6.fun7 = function() {
+    let name = "fun7";
+    console.log("From fun7 ---");
+    console.log(this);// fun 6
+    console.log(this.name); // fun6
+}
+
+fun6.fun7();
+```
+
+Functions are objects, so fun6 gets a method like an object and is thus is the object for `this`
+
+All of this stuff is IMPLICIT BINDING.
+
+## The Prototype
+
+Every object has a set of its own properties that are defined on the object, but some are already defined in the object's prototype.
+
+Almost every object is linked to another object. That linked object is called the prototype.
+
+Objects inherit properties and methods from its prototype ancestry.
+
+A prototype is automatically assigned to any object.
+
+*Reminder: everything in JS is an object, except for primitives*
+
+You can define an object's prototype.
+
