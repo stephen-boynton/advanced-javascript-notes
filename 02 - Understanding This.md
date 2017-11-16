@@ -195,3 +195,15 @@ A prototype is automatically assigned to any object.
 
 You can define an object's prototype.
 
+## The Function Prototype
+
+Functions are objects, therefore, they have a prototype!
+
+These methods are on functions:
+* apply
+* bind
+* call
+
+You can use these functions to change the value you `this`.
+
+## Call and Apply Methods
