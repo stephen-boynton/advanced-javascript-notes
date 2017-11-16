@@ -207,3 +207,53 @@ These methods are on functions:
 You can use these functions to change the value you `this`.
 
 ## Call and Apply Methods
+
+```js
+const greeting = function () {
+    console.log("Hello!");
+}
+
+greeting.call() //logs Hello!
+greeting.apply() // logs Hello!
+```
+
+**Using call():**
+* function.call(this, arg1, arg 2);
+* The first argument is an object that will become the value of this.
+* One or more arguments to be sent to the function may follow.
+
+**Using apply();**
+* function.apply(this, [arg1, arg2])
+* The first argument is an object that will become the value of this
+* One or more arguments to be sent to the function may follow in a single array.
+
+How you have the arguments determines which one you use. Nothing really different.
+
+```js
+const user1 = {
+    firstName: "John",
+    lastName: "Anderson",
+    fullName: function() {
+        return this.firstName + " " + this.lastName;
+    }
+}
+
+const user2 = {
+    firstName: "Sarah",
+    lastName: "West",
+    fullName: function() {
+        return this.firstName + " " + this.lastName;
+    }
+}
+
+const greeting = function(term, punct) {
+    console.log(term + " " + this.firstName + punct);
+}
+
+greeting.call(user1, "Good Morning", "!"); // "Good Morning John!"
+greeting.call(user2, "Good Afternoon", "!"); // "Good Afternoon Sarah!"
+
+greeting.apply(user1, ["Good Morning", "!"]); // "Good Morning John!"
+greeting.apply(user2, ["Good Afternoon", "!"]); // "Good Afternoon Sarah!"
+
+console.log(user1.fullName.call(user2)) // Sarah West
