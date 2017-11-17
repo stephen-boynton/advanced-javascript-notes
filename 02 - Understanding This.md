@@ -300,3 +300,6 @@ afternoonGreet("?");// Good afternoon John?
 morningGreet.call(user2, "!"); //the binding overwrites this, so again "Good morning John!"
 
 ```
+
+Once a function has been made with bind, a call function cannot change the value of this.
+
