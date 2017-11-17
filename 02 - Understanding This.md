@@ -262,3 +262,41 @@ console.log(user1.fullName.call(user2)) // Sarah West
 
 ## The Bind Method
 
+Similar to call() and apply(), but is unique. Used to determine the value of `this`. Bind creates a new function. 
+
+Using bind:
+* const func = function.bind(this, arg1, arg2)
+* bind returns a new function
+* The first argument is an object that will be come the value of this for that new function.
+* One or more arguments can be included that will be bound to the new function, meaning you will not need to pass in those arguments.
+
+```js
+const user1 = {
+    firstName: "John",
+    lastName: "Anderson",
+    fullName: function() {
+        return this.firstName + " " + this.lastName;
+    }
+}
+
+const user2 = {
+    firstName: "Sarah",
+    lastName: "West",
+    fullName: function() {
+        return this.firstName + " " + this.lastName;
+    }
+}
+
+const greeting = function(term, punct) {
+    console.log(term + " " + this.firstName + punct);
+}
+
+const morningGreet = greeting.bind(user1, "Good morning");
+const afternoonGreet = greeting.bind(user1, "Good afternoon");
+
+morningGreet("!");// Good morning John!
+afternoonGreet("?");// Good afternoon John?
+
+morningGreet.call(user2, "!"); //the binding overwrites this, so again "Good morning John!"
+
+```
