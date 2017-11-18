@@ -24,3 +24,34 @@ const greet2 = new Greeting();
 
 The `__proto__` of Greeting is a function prototype, but the `prototype` is Object. _confusing_
 
+## The value of This with a Constructor
+
+```js
+
+function Greeting() {
+    console.log(this)
+}
+
+Greeting(); //Window object
+
+new Greeting(); // Greeting is the value of this in a constructor function.
+```
+
+`new` creates a new object that is bound to Greeting. That's what gives constructor functions value. We use that power with `this`.
+
+```js
+function Users(fname, lname) {
+    this.firstName = fname;
+    this.lastName = lname;
+    this.fullName = function () {
+        return `${this.firstName} ${this.lastName}`;
+    }
+}
+
+const user1 = new Users("James", "Johnson");
+
+const user2 = new Uswers = new Users("Mary", "Smith");
+
+```
+
+Danger of constructor functions without the `new` keyword. This is why you always use an uppercase letter. The value of `this` will be the GLOBAL OBJECT. If you don't use `new`, it's going to define variables in the GLOBAL SPACE. Which is a big ol' no-no.
