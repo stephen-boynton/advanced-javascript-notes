@@ -17,3 +17,7 @@ var fullName = function() {
   );
 };
 ```
+
+## Arrow Functions
+
+Also can help us solve the problem of `this`.
